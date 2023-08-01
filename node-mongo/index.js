@@ -1,34 +1,34 @@
-const MongoClient=require('mongodb').MongoClient;
-const assert=require('assert');
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const dboper = require('./operations');
 
-const url='mongodb://localhost:27017/';
-const dbname='conFusion';
+const url = 'mongodb://localhost:27017/';
+const dbname = 'conFusion';
 
-MongoClient.connect(url,(err,client)=>{
+MongoClient.connect(url, (err, client) => {
+    assert.equal(err, null);
 
-    assert.equal(err,null);
+    console.log('Connected successfully');
 
-    console.log('Connected succesfully');
+    const db = client.db(dbname);
 
-    const db=client.db(dbname);
-    const collection=db.collection('dishes');
+    dboper.insertDocument(db, { name: 'vadonut', description: 'test' }, 'dishes', (result) => {
+        console.log('Insert document:\n', result.ops);
 
-    collection.insertOne({"name":"uthappizza","description":"test"},(err,result)=>{
-        assert.equal(err,null);
-        
-        console.log('after insert:\n');
-        console.log(result.ops);
+        dboper.findDocuments(db, 'dishes', (docs) => {
+            console.log('found documents:\n', docs);
 
-        collection.find({}).toArray((err,docs)=>{
-            assert.equal(err,null);
+            dboper.updateDocument(db,{ name: 'vadonut' },{ description: 'test' },'dishes',(result) => {
+                console.log('updated document:\n', result.result);
 
-            console.log('found:\n');
-            console.log(docs);
+                dboper.findDocuments(db, 'dishes', (docs) => {
+                    console.log('found documents:\n', docs);
 
-            db.dropCollection('dishes',(err,result)=>{
-                assert.equal(err,null);
-
-                client.close();
+                    db.dropCollection('dishes', (result) => {
+                        console.log('dropped collection:', result);
+                        client.close();
+                    });
+                });
             });
         });
     });
