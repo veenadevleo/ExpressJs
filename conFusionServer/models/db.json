@@ -1,0 +1,45 @@
+{
+    "dishes":[
+        {
+            "name":"Uthappizza",
+            "image":"images/uthappizza.png",
+            "category":"mains",
+            "label":"Hot",
+            "price":"4.99",
+            "featured":"true",
+            "description":"A unique combination of indian uttapam and pizza",
+            "comments":[
+                {
+                    "rating":5,
+                    "comment":"imagine all the eatables",
+                    "author":"Jhon lemon",
+                    "date":"2012-10-16T17:57:28.556094Z"
+                },
+                {
+                    "rating":3,
+                    "comment":"eat it just eat it",
+                    "author":"Michael jaikishan",
+                    "date":"2015-02-13T17:57:28.556094Z"
+                },
+                {
+                    "rating":4,
+                    "comment":"sends anyone to heaven, i wish",
+                    "author":"paul mcvites",
+                    "date":"2014-09005T17:67:26.556094"  
+                },
+                {
+                    "rating":3,
+                    "comment":"ultimate reaching for stars",
+                    "author":"ringo starry",
+                    "date":"2013-12-02T17:57:28.556094Z"
+                },
+                {
+                    "rating":2,
+                    "comment":"its your birthday, we re gonna party",
+                    "author":"25 cent",
+                    "date":"2013-12-02T17:57:28.556094Z"    
+                }
+            ]
+        }
+    ]
+}
