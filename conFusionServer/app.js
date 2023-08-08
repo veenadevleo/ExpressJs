@@ -11,6 +11,9 @@ const leaderRouter = require('./routes/leaderRouter');
 
 const mongoose = require('mongoose');
 const Dishes = require('./models/dishes');
+const Promotion = require('./models/promotions');
+const Leader = require('./models/leaders');
+
 
 const url = 'mongodb://localhost:27017/confusion';
 const connect = mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
