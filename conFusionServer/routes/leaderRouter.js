@@ -67,6 +67,17 @@ leaderRouter.route('/:leaderId')
       })
       .catch((err) => next(err));
   })
+  .patch((req, res, next) => { // Adding the PATCH route
+    Leader.findByIdAndUpdate(req.params.leaderId, {
+      $set: req.body
+    }, { new: true })
+      .then((leader) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(leader);
+      })
+      .catch((err) => next(err));
+  })
   .delete((req, res, next) => {
     Leader.findByIdAndRemove(req.params.leaderId)
       .then((resp) => {

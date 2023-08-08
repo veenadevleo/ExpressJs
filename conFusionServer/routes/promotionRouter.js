@@ -75,6 +75,17 @@ promotionRouter.route('/:promotionId')
         res.json(resp);
       })
       .catch((err) => next(err));
+  })
+  .patch((req, res, next) => {
+    Promotions.findByIdAndUpdate(req.params.promotionId, {
+      $set: req.body
+    }, { new: true })
+      .then((promotion) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(promotion);
+      })
+      .catch((err) => next(err));
   });
-
+  
 module.exports = promotionRouter;
